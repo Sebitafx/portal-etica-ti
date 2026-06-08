@@ -11,7 +11,7 @@ Este proyecto es una plataforma web interactiva diseñada para proveer a profesi
 - **Universidad:** Universidad Nacional Agraria de la Selva (UNAS)
 - **Facultad:** Ingeniería en Informática y Sistemas
 - **Curso:** Ética y Práctica Profesional
-- **Año:** 2024
+- **Año:** 2026
 
 ## Estructura del Proyecto
 - `/css`: Hojas de estilo del sitio.
