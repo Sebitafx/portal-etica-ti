@@ -1,5 +1,19 @@
+# Logs & build
 node_modules/
 dist/
-.env
-*.local
 .firebase/
+*.local
+tsconfig.tsbuildinfo
+
+# Env
+.env
+.env.*
+!.env.example
+
+# AI & Scratch scripts
+.agents/
+skills-lock.json
+*.cjs
+projects/
+guion_sustentacion_equipo.md
+ethiccode/

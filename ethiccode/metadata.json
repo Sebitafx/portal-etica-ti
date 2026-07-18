@@ -1,8 +1,0 @@
-{
-  "name": "Foro de Ética",
-  "description": "Plataforma de discusión sobre ética digital, bioética, ética profesional y dilemas morales contemporáneos.",
-  "requestFramePermissions": [],
-  "majorCapabilities": [
-    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
-  ]
-}
