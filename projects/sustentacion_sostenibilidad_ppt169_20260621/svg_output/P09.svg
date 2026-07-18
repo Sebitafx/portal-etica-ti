@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#F8FAFC"/>
+  <!-- Marco Top Left -->
+  <polygon points="0,0 250,0 0,250" fill="#1E3A8A" />
+  <polygon points="0,250 250,0 270,0 0,270" fill="#10B981" />
+  <!-- Marco Bottom Right -->
+  <polygon points="1280,720 1030,720 1280,470" fill="#1E3A8A" />
+  <polygon points="1280,470 1030,720 1010,720 1280,450" fill="#10B981" />
+
+  <text x="640" y="260" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="40" font-weight="bold" fill="#1E3A8A" text-anchor="middle">
+    La sostenibilidad es una obligación ética, no una opción.
+  </text>
+
+  <rect x="540" y="320" width="200" height="4" fill="#10B981"/>
+
+  <text x="640" y="420" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="46" font-weight="900" fill="#1E3A8A" text-anchor="middle" font-style="italic">
+    "El mejor código es aquel que respeta
+  </text>
+  <text x="640" y="480" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="46" font-weight="900" fill="#1E3A8A" text-anchor="middle" font-style="italic">
+    a su usuario y a su entorno."
+  </text>
+  
+  <text x="640" y="580" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="bold" fill="#10B981" text-anchor="middle">
+    ¡Gracias por su atención!
+  </text>
+</svg>

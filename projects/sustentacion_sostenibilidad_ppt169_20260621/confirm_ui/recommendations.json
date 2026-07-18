@@ -1,0 +1,130 @@
+{
+  "lang": "es",
+  "canvas": "ppt169",
+  "page_count": "6 páginas",
+  "audience": "Docente universitario y compañeros de clase",
+  "content_divergence": {
+    "value": "Equilibrado (mantener la estructura proporcionada pero optimizar para la presentación)"
+  },
+  "mode": "briefing",
+  "visual_style_spectrum": [
+    {
+      "id": "swiss-minimal",
+      "tag_zh": "Limpio y profesional",
+      "tag_en": "Clean and professional",
+      "note_zh": "Estilo corporativo estándar",
+      "note_en": "Standard corporate style"
+    },
+    {
+      "id": "dark-tech",
+      "tag_zh": "Tecnológico Oscuro",
+      "tag_en": "Dark Tech",
+      "note_zh": "Fondo oscuro con acentos esmeralda (Alineado al proyecto)",
+      "note_en": "Dark field with emerald accents (Aligned with project)"
+    },
+    {
+      "id": "editorial",
+      "tag_zh": "Estilo Revista",
+      "tag_en": "Magazine Style",
+      "note_zh": "Elegante y estructurado como artículo de investigación",
+      "note_en": "Elegant and structured like a research article"
+    }
+  ],
+  "visual_style": "dark-tech",
+  "palette_candidates": [
+    {
+      "id": "dark_emerald",
+      "name_zh": "Oscuro Esmeralda",
+      "name_en": "Dark Emerald",
+      "background": "#09090b",
+      "secondary_bg": "#18181b",
+      "primary": "#10b981",
+      "accent": "#34d399",
+      "secondary_accent": "#0ea5e9",
+      "body_text": "#e4e4e7"
+    },
+    {
+      "id": "light_emerald",
+      "name_zh": "Claro Esmeralda",
+      "name_en": "Light Emerald",
+      "background": "#ffffff",
+      "secondary_bg": "#f4f4f5",
+      "primary": "#10b981",
+      "accent": "#047857",
+      "secondary_accent": "#0ea5e9",
+      "body_text": "#27272a"
+    },
+    {
+      "id": "nature_tech",
+      "name_zh": "Naturaleza Tecnológica",
+      "name_en": "Tech Nature",
+      "background": "#f8fafc",
+      "secondary_bg": "#e2e8f0",
+      "primary": "#059669",
+      "accent": "#10b981",
+      "secondary_accent": "#0284c7",
+      "body_text": "#0f172a"
+    }
+  ],
+  "icons": "tabler-outline",
+  "typography_candidates": [
+    {
+      "id": "tech_modern",
+      "name_zh": "Tecnológico Moderno",
+      "name_en": "Modern Tech",
+      "heading": { "latin": "Arial Black", "cjk": "SimHei", "css": "'Arial Black', SimHei, sans-serif" },
+      "body": { "latin": "Segoe UI", "cjk": "Microsoft YaHei", "css": "'Segoe UI', 'Microsoft YaHei', sans-serif" },
+      "body_size": 24
+    },
+    {
+      "id": "clean_corporate",
+      "name_zh": "Corporativo Limpio",
+      "name_en": "Clean Corporate",
+      "heading": { "latin": "Calibri", "cjk": "Microsoft YaHei", "css": "Calibri, 'Microsoft YaHei', sans-serif" },
+      "body": { "latin": "Calibri", "cjk": "Microsoft YaHei", "css": "Calibri, 'Microsoft YaHei', sans-serif" },
+      "body_size": 24
+    },
+    {
+      "id": "academic_serif",
+      "name_zh": "Académico",
+      "name_en": "Academic",
+      "heading": { "latin": "Georgia", "cjk": "SimSun", "css": "Georgia, SimSun, serif" },
+      "body": { "latin": "Calibri", "cjk": "Microsoft YaHei", "css": "Calibri, 'Microsoft YaHei', sans-serif" },
+      "body_size": 24
+    }
+  ],
+  "formula_policy": "text-only",
+  "image_usage": "ai",
+  "image_ai_path": "auto",
+  "image_strategy": {
+    "candidates": [
+      {
+        "id": "plan_a",
+        "name_zh": "Futuro Energético — 3d-isometric × tech-neon",
+        "name_en": "Future Energy — 3d-isometric × tech-neon",
+        "rendering": "3d-isometric",
+        "palette": "tech-neon",
+        "note_zh": "Visual: 3D isométrico, sombras suaves, halos de luz. Color: Fondo oscuro con luces esmeralda. Mood: Futurista, energético; como una presentación de Google.",
+        "note_en": "Visual: 3D isometric, soft shading, light halos. Color: Dark field with emerald lights. Mood: Futuristic, energetic; like a Google keynote."
+      },
+      {
+        "id": "plan_b",
+        "name_zh": "Minimalista Suizo — flat × cool-corporate",
+        "name_en": "Swiss Minimalist — flat × cool-corporate",
+        "rendering": "flat",
+        "palette": "cool-corporate",
+        "note_zh": "Visual: Vector plano 2D, colores sólidos, sin sombras. Color: Blanco hueso con verde corporativo. Mood: Limpio, confiable; como un reporte de consultora.",
+        "note_en": "Visual: Flat 2D vector, solid colors, no shadows. Color: Off-white with corporate green. Mood: Clean, reliable; like a consulting report."
+      },
+      {
+        "id": "plan_c",
+        "name_zh": "Ilustración Conceptual — vector-illustration × nature-organic",
+        "name_en": "Conceptual Illustration — vector-illustration × nature-organic",
+        "rendering": "vector-illustration",
+        "palette": "nature-organic",
+        "note_zh": "Visual: Ilustración vectorial artística con texturas ligeras. Color: Tonos tierra y verdes naturales. Mood: Orgánico, sostenible; enfocado en la ecología.",
+        "note_en": "Visual: Artistic vector illustration with light textures. Color: Earth tones and natural greens. Mood: Organic, sustainable; ecology-focused."
+      }
+    ]
+  }
+}

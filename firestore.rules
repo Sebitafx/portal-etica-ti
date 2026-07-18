@@ -1,0 +1,85 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuth() { return request.auth != null; }
+    function isAdmin() {
+      return isAuth() && (
+        request.auth.token.email == 'oriundotafur@gmail.com' ||
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin'
+      );
+    }
+    function isOwner(uid) { return isAuth() && request.auth.uid == uid; }
+    function notBanned() {
+      return isAuth() &&
+        get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isBanned != true;
+    }
+
+    // === USERS ===
+    match /users/{uid} {
+      allow read: if isAuth();
+      allow create: if isOwner(uid);
+      allow update: if isOwner(uid) || isAdmin();
+      allow delete: if false;
+    }
+
+    // === CATEGORIES ===
+    match /categories/{categoryId} {
+      allow read: if true; // públicas
+      allow create: if isAdmin();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // === THREADS ===
+    match /threads/{threadId} {
+      allow read: if isAuth();
+      allow create: if notBanned();
+      allow update: if isAuth() && (
+        resource.data.authorId == request.auth.uid ||
+        isAdmin()
+      );
+      allow delete: if isAdmin();
+
+      // === COMMENTS (subcollection) ===
+      match /comments/{commentId} {
+        allow read: if isAuth();
+        allow create: if notBanned() &&
+          request.resource.data.authorId == request.auth.uid;
+        allow update: if isAuth() && (
+          resource.data.authorId == request.auth.uid ||
+          isAdmin()
+        );
+        allow delete: if false; // soft-delete only
+      }
+    }
+
+    // === REPORTS ===
+    match /reports/{reportId} {
+      allow read: if isAdmin();
+      allow create: if notBanned() &&
+        request.resource.data.reportedBy == request.auth.uid &&
+        request.resource.data.status == 'pending';
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // === NOTIFICATIONS ===
+    match /notifications/{notifId} {
+      allow read: if isAuth() && resource.data.recipientId == request.auth.uid;
+      allow create: if isAuth();
+      allow update: if isAuth() && resource.data.recipientId == request.auth.uid;
+      allow delete: if isAdmin() || (isAuth() && resource.data.recipientId == request.auth.uid);
+    }
+
+    // === ACTIVITIES ===
+    match /activities/{activityId} {
+      allow read: if isAuth() && (resource.data.userId == request.auth.uid || isAdmin());
+      allow create: if isAuth();
+      allow update: if isAdmin();
+      allow delete: if isAdmin();
+    }
+  }
+}

@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#FFFFFF"/>
+  
+  <text x="60" y="100" font-family="'Arial Black', SimHei, sans-serif" font-size="43" font-weight="900" fill="#10B981">
+    Desarrollo de Software Sostenible
+  </text>
+  <rect x="60" y="120" width="60" height="4" fill="#047857"/>
+  
+  <text x="60" y="180" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="28" font-weight="600" fill="#27272A">
+    El Green Coding busca reducir la huella ambiental desde la ingeniería.
+  </text>
+  
+  <!-- Card 1 -->
+  <rect x="60" y="240" width="260" height="350" rx="8" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="2"/>
+  <rect x="60" y="240" width="260" height="8" rx="8" fill="#10B981"/>
+  <text x="80" y="300" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="600" fill="#27272A">
+    Código Eficiente
+  </text>
+  <text x="80" y="350" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="19" fill="#52525B">
+    <tspan x="80" dy="0">Algoritmos con</tspan>
+    <tspan x="80" dy="25">menor complejidad</tspan>
+    <tspan x="80" dy="25">temporal y espacial.</tspan>
+  </text>
+
+  <!-- Card 2 -->
+  <rect x="360" y="240" width="260" height="350" rx="8" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="2"/>
+  <rect x="360" y="240" width="260" height="8" rx="8" fill="#10B981"/>
+  <text x="380" y="300" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="600" fill="#27272A">
+    Optimización
+  </text>
+  <text x="380" y="350" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="19" fill="#52525B">
+    <tspan x="380" dy="0">Minimizar uso de</tspan>
+    <tspan x="380" dy="25">memoria RAM y</tspan>
+    <tspan x="380" dy="25">ciclos de CPU de</tspan>
+    <tspan x="380" dy="25">forma innecesaria.</tspan>
+  </text>
+
+  <!-- Card 3 -->
+  <rect x="660" y="240" width="260" height="350" rx="8" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="2"/>
+  <rect x="660" y="240" width="260" height="8" rx="8" fill="#10B981"/>
+  <text x="680" y="300" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="600" fill="#27272A">
+    Green Coding
+  </text>
+  <text x="680" y="350" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="19" fill="#52525B">
+    <tspan x="680" dy="0">Prácticas de</tspan>
+    <tspan x="680" dy="25">programación 100%</tspan>
+    <tspan x="680" dy="25">ecológica enfocada</tspan>
+    <tspan x="680" dy="25">en la sostenibilidad.</tspan>
+  </text>
+
+  <!-- Card 4 -->
+  <rect x="960" y="240" width="260" height="350" rx="8" fill="#F4F4F5" stroke="#E4E4E7" stroke-width="2"/>
+  <rect x="960" y="240" width="260" height="8" rx="8" fill="#10B981"/>
+  <text x="980" y="300" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="24" font-weight="600" fill="#27272A">
+    Ciclo de Vida
+  </text>
+  <text x="980" y="350" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="19" fill="#52525B">
+    <tspan x="980" dy="0">Gestión del software</tspan>
+    <tspan x="980" dy="25">desde el diseño</tspan>
+    <tspan x="980" dy="25">hasta su desuso de</tspan>
+    <tspan x="980" dy="25">manera responsable.</tspan>
+  </text>
+  
+  <text x="1220" y="680" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="19" fill="#A1A1AA" text-anchor="end">
+    4
+  </text>
+</svg>

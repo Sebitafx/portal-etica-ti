@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#F8FAFC"/>
+  <!-- Marco Top Left -->
+  <polygon points="0,0 250,0 0,250" fill="#1E3A8A" />
+  <polygon points="0,250 250,0 270,0 0,270" fill="#10B981" />
+  <!-- Marco Bottom Right -->
+  <polygon points="1280,720 1030,720 1280,470" fill="#1E3A8A" />
+  <polygon points="1280,470 1030,720 1010,720 1280,450" fill="#10B981" />
+  
+  <text x="640" y="270" font-family="'Arial Black', SimHei, sans-serif" font-size="56" font-weight="900" fill="#1E3A8A" text-anchor="middle">
+    TIC, IMPACTO AMBIENTAL
+  </text>
+  <text x="640" y="340" font-family="'Arial Black', SimHei, sans-serif" font-size="56" font-weight="900" fill="#10B981" text-anchor="middle">
+    Y SOSTENIBILIDAD
+  </text>
+  
+  <rect x="540" y="390" width="200" height="4" fill="#047857"/>
+  
+  <text x="640" y="450" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="30" font-weight="600" fill="#334155" text-anchor="middle">
+    Enfoque en la Ética y Práctica Profesional - Caso: EthiCode
+  </text>
+  
+  <text x="640" y="520" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="22" fill="#64748B" text-anchor="middle">
+    <tspan x="640" dy="0">Docente: Pozo Malpartida, Jorge Luis</tspan>
+    <tspan x="640" dy="40" font-weight="bold">Integrantes:</tspan>
+    <tspan x="640" dy="30">Oriundo Tafur, Josué Sebastián</tspan>
+    <tspan x="640" dy="30">Valles Sevillano, Alan Samuel</tspan>
+    <tspan x="640" dy="30">Vega Guillen, Luis Arhian</tspan>
+  </text>
+</svg>

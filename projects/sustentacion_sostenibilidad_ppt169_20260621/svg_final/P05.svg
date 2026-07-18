@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#F8FAFC" />
+  
+  <polygon points="0,0 250,0 0,250" fill="#1E3A8A" />
+  <polygon points="0,250 250,0 270,0 0,270" fill="#10B981" />
+  
+  <polygon points="1280,720 1030,720 1280,470" fill="#1E3A8A" />
+  <polygon points="1280,470 1030,720 1010,720 1280,450" fill="#10B981" />
+
+  <text x="120" y="140" font-family="'Arial Black', SimHei, sans-serif" font-size="48" font-weight="900" fill="#1E3A8A">
+    EthiCode: Nuestro Compromiso
+  </text>
+  <rect x="120" y="170" width="100" height="6" fill="#10B981" />
+
+  <path fill="#1E3A8A" d="M132,240 H1148 A12,12 0 0 1 1160,252 V328 A12,12 0 0 1 1148,340 H132 A12,12 0 0 1 120,328 V252 A12,12 0 0 1 132,240 Z" />
+  <text x="640" y="300" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="32" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+    No solo hablamos de ética; programamos con ética.
+  </text>
+
+  <text font-size="28" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" fill="#1E3A8A" x="120" y="420" font-weight="bold">1. Plataforma Desarrollada Éticamente:</text><text font-size="28" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" fill="#334155" x="160" y="465">Hemos tomado decisiones arquitectónicas enfocadas en</text><text font-size="28" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" fill="#334155" x="160" y="510">reducir directamente nuestro impacto ambiental.</text><text font-size="28" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" fill="#1E3A8A" x="120" y="590" font-weight="bold">2. Eficiencia centrada en el usuario:</text><text font-size="28" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" fill="#334155" x="160" y="635">Optimizaciones diseñadas para que la plataforma fluya rápido,</text><text font-size="28" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" fill="#334155" x="160" y="680">consumiendo la menor batería y datos posibles en sus dispositivos.</text></svg>

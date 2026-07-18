@@ -1,0 +1,220 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Global Safety Net First!
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Helper Functions
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    // Verified Users: For all standard write operations (unless the app
+    // explicitly supports anonymous users), mandate email verification if possible.
+    // However, google auth emails are verified by default, let's keep request.auth != null as basic.
+    function isOwner(uid) {
+      return isSignedIn() && request.auth.uid == uid;
+    }
+
+    // Administator Lookup: Uses exists() and get() on the users collection,
+    // or checks the bootstrapped developer's email from runtime.
+    function isAdmin() {
+      return isSignedIn() && (
+        request.auth.token.email == 'jhuniorcastillomorales4@gmail.com' ||
+        (exists(/databases/$(database)/documents/users/$(request.auth.uid)) &&
+         get(/databases/$(database)/documents/users/$(request.auth.uid)).data.isAdmin == true)
+      );
+    }
+
+    // String validation & Length protection against Poisoning
+    function isValidId(id) {
+      return id is string && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function isStringWithLimit(val, max_size) {
+      return val is string && val.size() <= max_size;
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    // ---- MATCH BLOCKS ----
+
+    // 1. Categories Collection
+    match /categories/{categoryId} {
+      allow read: if true;
+      allow create, update, delete: if isAdmin() && isValidId(categoryId);
+    }
+
+    // 2. Users Collection
+    function isValidUserProfile(data) {
+      return data.keys().hasAll(['uid', 'email', 'displayName', 'photoURL', 'emailVerified', 'createdAt', 'isAdmin', 'isBanned', 'status'])
+        && data.keys().size() <= 11 // allows additional optional fields or banReason
+        && isStringWithLimit(data.uid, 128)
+        && isStringWithLimit(data.email, 256)
+        && isStringWithLimit(data.displayName, 256)
+        && isStringWithLimit(data.photoURL, 1024)
+        && data.emailVerified is bool
+        && isStringWithLimit(data.createdAt, 40)
+        && data.isAdmin is bool
+        && data.isBanned is bool
+        && data.status in ['active', 'suspended'];
+    }
+
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isOwner(userId) && isValidUserProfile(incoming()) && incoming().isAdmin == false && incoming().isBanned == false && incoming().status == 'active';
+      allow update: if (
+        isOwner(userId) && isValidUserProfile(incoming()) && 
+        incoming().isAdmin == existing().isAdmin && 
+        incoming().isBanned == existing().isBanned && 
+        incoming().status == existing().status &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'photoURL'])
+      ) || (
+        isAdmin() && isValidUserProfile(incoming()) &&
+        incoming().diff(existing()).affectedKeys().hasAny(['isAdmin', 'isBanned', 'status', 'banReason'])
+      );
+      allow delete: if isOwner(userId) || isAdmin();
+    }
+
+    // 3. Threads Collection
+    function isValidThread(data) {
+      return data.keys().hasAll(['id', 'title', 'content', 'category', 'authorId', 'authorName', 'authorPhoto', 'createdAt', 'isLocked', 'replyCount', 'keywords'])
+        && data.keys().size() <= 13
+        && isStringWithLimit(data.id, 128)
+        && isStringWithLimit(data.title, 500)
+        && isStringWithLimit(data.content, 10000)
+        && isStringWithLimit(data.category, 128)
+        && isStringWithLimit(data.authorId, 128)
+        && isStringWithLimit(data.authorName, 256)
+        && isStringWithLimit(data.authorPhoto, 1024)
+        && isStringWithLimit(data.createdAt, 40)
+        && data.isLocked is bool
+        && data.replyCount is int
+        && data.keywords is list
+        && data.keywords.size() <= 20;
+    }
+
+    match /threads/{threadId} {
+      allow read: if true;
+      allow create: if isSignedIn() && isValidId(threadId) && isValidThread(incoming()) && isOwner(incoming().authorId);
+      allow update: if (
+        // Standard user update: title, content (Only thread author and parent thread not locked)
+        isOwner(existing().authorId) && isValidThread(incoming()) && !existing().isLocked &&
+        incoming().isLocked == existing().isLocked &&
+        incoming().replyCount == existing().replyCount &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().authorId == existing().authorId &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['title', 'content', 'category', 'keywords', 'updatedAt'])
+      ) || (
+        // Comment count update (when adding/removing comment)
+        isSignedIn() && isValidThread(incoming()) &&
+        incoming().title == existing().title &&
+        incoming().content == existing().content &&
+        incoming().isLocked == existing().isLocked &&
+        incoming().authorId == existing().authorId &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['replyCount'])
+      ) || (
+        // Admin update: lock, category, title, content (RF25)
+        isAdmin() && isValidThread(incoming()) &&
+        incoming().diff(existing()).affectedKeys().hasAny(['isLocked', 'title', 'content', 'category', 'updatedAt'])
+      );
+      allow delete: if isOwner(existing().authorId) || isAdmin();
+    }
+
+    // 4. Comments Collection
+    function isValidComment(data) {
+      return data.keys().hasAll(['id', 'threadId', 'content', 'authorId', 'authorName', 'authorPhoto', 'createdAt'])
+        && data.keys().size() <= 11
+        && isStringWithLimit(data.id, 128)
+        && isStringWithLimit(data.threadId, 128)
+        && isStringWithLimit(data.content, 10000)
+        && isStringWithLimit(data.authorId, 128)
+        && isStringWithLimit(data.authorName, 256)
+        && isStringWithLimit(data.authorPhoto, 1024)
+        && isStringWithLimit(data.createdAt, 40);
+    }
+
+    match /comments/{commentId} {
+      allow read: if true;
+      allow create: if isSignedIn() && isValidId(commentId) && isValidComment(incoming()) && isOwner(incoming().authorId)
+        && exists(/databases/$(database)/documents/threads/$(incoming().threadId))
+        && get(/databases/$(database)/documents/threads/$(incoming().threadId)).data.isLocked == false;
+      allow update: if (
+        isOwner(existing().authorId) && isValidComment(incoming()) &&
+        incoming().threadId == existing().threadId &&
+        incoming().authorId == existing().authorId &&
+        incoming().createdAt == existing().createdAt &&
+        incoming().diff(existing()).affectedKeys().hasOnly(['content', 'updatedAt'])
+      ) || isAdmin();
+      allow delete: if isOwner(existing().authorId) || isAdmin();
+    }
+
+    // 5. Reports Collection
+    function isValidReport(data) {
+      return data.keys().hasAll(['id', 'type', 'targetId', 'threadId', 'reason', 'reportedBy', 'reportedByName', 'contentSummary', 'status', 'createdAt'])
+        && data.keys().size() == 10
+        && isStringWithLimit(data.id, 128)
+        && data.type in ['thread', 'comment']
+        && isStringWithLimit(data.targetId, 128)
+        && isStringWithLimit(data.threadId, 128)
+        && isStringWithLimit(data.reason, 1000)
+        && isStringWithLimit(data.reportedBy, 128)
+        && isStringWithLimit(data.reportedByName, 256)
+        && isStringWithLimit(data.contentSummary, 1000)
+        && data.status in ['pending', 'resolved', 'dismissed']
+        && isStringWithLimit(data.createdAt, 40);
+    }
+
+    match /reports/{reportId} {
+      allow read, update, delete: if isAdmin();
+      allow create: if isSignedIn() && isValidId(reportId) && isValidReport(incoming()) && isOwner(incoming().reportedBy) && incoming().status == 'pending';
+    }
+
+    // 6. Notifications Collection
+    function isValidNotification(data) {
+      return data.keys().hasAll(['id', 'recipientId', 'senderName', 'type', 'threadId', 'threadTitle', 'createdAt', 'read'])
+        && data.keys().size() == 8
+        && isStringWithLimit(data.id, 128)
+        && isStringWithLimit(data.recipientId, 128)
+        && isStringWithLimit(data.senderName, 256)
+        && data.type == 'comment'
+        && isStringWithLimit(data.threadId, 128)
+        && isStringWithLimit(data.threadTitle, 500)
+        && isStringWithLimit(data.createdAt, 40)
+        && data.read is bool;
+    }
+
+    match /notifications/{notificationId} {
+      allow read, update: if isSignedIn() && isOwner(existing().recipientId);
+      allow create: if isSignedIn() && isValidId(notificationId) && isValidNotification(incoming());
+      allow delete: if isAdmin() || (isSignedIn() && isOwner(existing().recipientId));
+    }
+
+    // 7. Activities Collection
+    function isValidActivity(data) {
+      return data.keys().hasAll(['id', 'userId', 'type', 'description', 'createdAt'])
+        && data.keys().size() == 5
+        && isStringWithLimit(data.id, 128)
+        && isStringWithLimit(data.userId, 128)
+        && isStringWithLimit(data.type, 128)
+        && isStringWithLimit(data.description, 1000)
+        && isStringWithLimit(data.createdAt, 40);
+    }
+
+    match /activities/{activityId} {
+      allow read: if isAdmin() || (isSignedIn() && isOwner(existing().userId));
+      allow create: if isSignedIn() && isValidId(activityId) && isValidActivity(incoming()) && isOwner(incoming().userId);
+      allow update, delete: if isAdmin();
+    }
+
+  }
+}

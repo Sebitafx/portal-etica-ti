@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#F8FAFC"/>
+  <!-- Marco Top Left -->
+  <polygon points="0,0 250,0 0,250" fill="#1E3A8A" />
+  <polygon points="0,250 250,0 270,0 0,270" fill="#10B981" />
+  <!-- Marco Bottom Right -->
+  <polygon points="1280,720 1030,720 1280,470" fill="#1E3A8A" />
+  <polygon points="1280,470 1030,720 1010,720 1280,450" fill="#10B981" />
+
+  <text x="120" y="140" font-family="'Arial Black', SimHei, sans-serif" font-size="48" font-weight="900" fill="#1E3A8A">
+    EthiCode: Nuestro Compromiso
+  </text>
+  <rect x="120" y="170" width="100" height="6" fill="#10B981"/>
+
+  <rect x="120" y="240" width="1040" height="100" rx="12" fill="#1E3A8A"/>
+  <text x="640" y="300" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="32" font-weight="bold" fill="#FFFFFF" text-anchor="middle">
+    No solo hablamos de ética; programamos con ética.
+  </text>
+
+  <text x="120" y="420" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="28" fill="#334155">
+    <tspan x="120" dy="0" font-weight="bold" fill="#1E3A8A">1. Plataforma Desarrollada Éticamente:</tspan>
+    <tspan x="160" dy="45">Hemos tomado decisiones arquitectónicas enfocadas en</tspan>
+    <tspan x="160" dy="45">reducir directamente nuestro impacto ambiental.</tspan>
+    
+    <tspan x="120" dy="80" font-weight="bold" fill="#1E3A8A">2. Eficiencia centrada en el usuario:</tspan>
+    <tspan x="160" dy="45">Optimizaciones diseñadas para que la plataforma fluya rápido,</tspan>
+    <tspan x="160" dy="45">consumiendo la menor batería y datos posibles en sus dispositivos.</tspan>
+  </text>
+</svg>

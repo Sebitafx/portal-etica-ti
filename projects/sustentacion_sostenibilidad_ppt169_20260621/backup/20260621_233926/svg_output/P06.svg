@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720">
+  <rect width="1280" height="720" fill="#FFFFFF"/>
+  <rect width="1280" height="720" fill="#10B981" opacity="0.05"/>
+  
+  <text x="640" y="340" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="43" font-weight="600" fill="#047857" text-anchor="middle">
+    "La tecnología será verdaderamente avanzada
+  </text>
+  <text x="640" y="410" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="43" font-weight="600" fill="#047857" text-anchor="middle">
+    cuando sea completamente sostenible."
+  </text>
+  
+  <rect x="610" y="460" width="60" height="4" fill="#10B981"/>
+  
+  <text x="640" y="520" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="24" fill="#27272A" text-anchor="middle">
+    ¡Gracias por su atención!
+  </text>
+  
+  <text x="1220" y="680" font-family="'Segoe UI', 'Microsoft YaHei', sans-serif" font-size="19" fill="#A1A1AA" text-anchor="end">
+    6
+  </text>
+</svg>

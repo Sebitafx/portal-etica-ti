@@ -1,0 +1,149 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "User profile with status, credentials and role.",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "email": { "type": "string" },
+        "displayName": { "type": "string" },
+        "photoURL": { "type": "string" },
+        "emailVerified": { "type": "boolean" },
+        "createdAt": { "type": "string" },
+        "isAdmin": { "type": "boolean" },
+        "isBanned": { "type": "boolean" },
+        "banReason": { "type": "string" },
+        "status": { "type": "string", "enum": ["active", "suspended"] }
+      },
+      "required": ["uid", "email", "displayName", "photoURL", "emailVerified", "createdAt", "isAdmin", "isBanned", "status"]
+    },
+    "ForumCategory": {
+      "title": "ForumCategory",
+      "description": "Topic pillars or subjects of discussion.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "description": { "type": "string" }
+      },
+      "required": ["id", "name", "description"]
+    },
+    "Thread": {
+      "title": "Thread",
+      "description": "Ethics discussion thread containing user questions.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "content": { "type": "string" },
+        "category": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "isLocked": { "type": "boolean" },
+        "replyCount": { "type": "integer" },
+        "keywords": { "type": "array" }
+      },
+      "required": ["id", "title", "content", "category", "authorId", "authorName", "authorPhoto", "createdAt", "isLocked", "replyCount", "keywords"]
+    },
+    "Comment": {
+      "title": "Comment",
+      "description": "User perspectives and debate contributions on a thread.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "threadId": { "type": "string" },
+        "content": { "type": "string" },
+        "authorId": { "type": "string" },
+        "authorName": { "type": "string" },
+        "authorPhoto": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "updatedAt": { "type": "string" },
+        "quotedCommentId": { "type": "string" },
+        "quotedCommentText": { "type": "string" },
+        "quotedCommentAuthor": { "type": "string" }
+      },
+      "required": ["id", "threadId", "content", "authorId", "authorName", "authorPhoto", "createdAt"]
+    },
+    "Report": {
+      "title": "Report",
+      "description": "Infraction reports for community moderation.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "type": { "type": "string", "enum": ["thread", "comment"] },
+        "targetId": { "type": "string" },
+        "threadId": { "type": "string" },
+        "reason": { "type": "string" },
+        "reportedBy": { "type": "string" },
+        "reportedByName": { "type": "string" },
+        "contentSummary": { "type": "string" },
+        "status": { "type": "string", "enum": ["pending", "resolved", "dismissed"] },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "type", "targetId", "threadId", "reason", "reportedBy", "reportedByName", "contentSummary", "status", "createdAt"]
+    },
+    "Notification": {
+      "title": "Notification",
+      "description": "User notifications for comment replies.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "recipientId": { "type": "string" },
+        "senderName": { "type": "string" },
+        "type": { "type": "string", "enum": ["comment"] },
+        "threadId": { "type": "string" },
+        "threadTitle": { "type": "string" },
+        "createdAt": { "type": "string" },
+        "read": { "type": "boolean" }
+      },
+      "required": ["id", "recipientId", "senderName", "type", "threadId", "threadTitle", "createdAt", "read"]
+    },
+    "UserActivity": {
+      "title": "UserActivity",
+      "description": "Durable record of actions taken by users.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "userId": { "type": "string" },
+        "type": { "type": "string" },
+        "description": { "type": "string" },
+        "createdAt": { "type": "string" }
+      },
+      "required": ["id", "userId", "type", "description", "createdAt"]
+    }
+  },
+  "firestore": {
+    "categories": {
+      "schema": "ForumCategory",
+      "description": "Ethics discussion topics/categories."
+    },
+    "threads": {
+      "schema": "Thread",
+      "description": "Main topics for moral debate."
+    },
+    "comments": {
+      "schema": "Comment",
+      "description": "Debate perspectives on the threads."
+    },
+    "reports": {
+      "schema": "Report",
+      "description": "Flagged items for investigation."
+    },
+    "notifications": {
+      "schema": "Notification",
+      "description": "Visual alerts for users."
+    },
+    "users": {
+      "schema": "UserProfile",
+      "description": "User profile and permissions."
+    },
+    "activities": {
+      "schema": "UserActivity",
+      "description": "Audit trails for actions."
+    }
+  }
+}
